@@ -8,9 +8,8 @@ import scala.concurrent.Future
 
 class ProjectRepository(pipelineDatabaseEngine: PipelineDatabaseEngine, projectEntry: ProjectEntry) {
 
+  import pipelineDatabaseEngine._
   import pipelineDatabaseEngine.profile.api._
-
-  private val database = pipelineDatabaseEngine.database
 
   def getProjectById(projectId: ProjectId): Future[Option[Project]] = database.run(projectEntry.getProjectByIdAction(projectId).result.headOption)
 
